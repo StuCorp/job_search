@@ -1,4 +1,4 @@
-import { eventOrOdd, multiply } from "@/playground";
+import { eventOrOdd, multiply } from "@/playground.mjs";
 
 describe("basic math", () => {
   it("adds two numbers", () => {

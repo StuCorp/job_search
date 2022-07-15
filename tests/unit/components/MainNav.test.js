@@ -35,3 +35,28 @@ describe("MainNav", () => {
     ]);
   });
 });
+
+describe("when user is logged out", () => {
+  it("prompts user to sign in", () => {
+    const wrapper = mount(MainNav);
+    const loginButton = wrapper.find("[data-test='login-button']");
+    // const profileImagin = wrapper.findComponent({ name: "ProfileImage" });
+    const profileImagin = wrapper.findComponent("[data-test='profile-image']");
+    expect(loginButton.exists()).toBe(true);
+    expect(profileImagin.exists()).toBe(false);
+  });
+});
+
+describe("when user logs in", () => {
+  it("displays user profile picture", async () => {
+    const wrapper = mount(MainNav);
+    let profileImagin = wrapper.findComponent("[data-test='profile-image']");
+    expect(profileImagin.exists()).toBe(false);
+
+    const loginButton = wrapper.findComponent("[data-test='login-button']");
+    await loginButton.trigger("click");
+    // the original reference is fixed its nullness, so need to search again
+    profileImagin = wrapper.findComponent("[data-test='profile-image']");
+    expect(profileImagin.exists()).toBe(true);
+  });
+});

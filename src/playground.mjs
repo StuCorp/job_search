@@ -35,3 +35,13 @@ const squares = numbers.map((number) => {
   return number * number;
 });
 console.log(squares);
+
+// Dynamic Object Properties
+
+const favouriteFood = "sushi";
+
+const goodFoods = {
+  [favouriteFood]: true,
+};
+
+console.log(goodFoods);

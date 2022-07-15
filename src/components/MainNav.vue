@@ -25,8 +25,15 @@
           </ul>
         </nav>
         <div class="flex items-center h-full ml-auto">
-          <profile-image v-if="isLoggedIn" />
-          <action-button v-else />
+          <profile-image v-if="isLoggedIn" data-test="profile-image" />
+          <!-- two-word props should be camel-case for HTML convention -->
+          <!-- to pass a boolean, you need to bind -> eg :is-primary="false"  -->
+          <action-button
+            v-else
+            text="Sign in"
+            data-test="login-button"
+            @click="logInUser"
+          />
         </div>
       </div>
     </div>
@@ -56,6 +63,11 @@ export default {
       ],
       isLoggedIn: false,
     };
+  },
+  methods: {
+    logInUser() {
+      this.isLoggedIn = true;
+    },
   },
 };
 </script>
