@@ -1,9 +1,11 @@
-import { mount } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import MainNav from "@/components/MainNav.vue";
 
 describe("MainNav", () => {
   it("displays company name", async () => {
-    const wrapper = mount(MainNav);
+    // mount renders entire component tree: all of MainNav's children
+    // shallowMount just renders that one component
+    const wrapper = shallowMount(MainNav);
     // const wrapper = mount(MainNav, {
     //   data() {
     //     return {
@@ -38,7 +40,7 @@ describe("MainNav", () => {
 
 describe("when user is logged out", () => {
   it("prompts user to sign in", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     const loginButton = wrapper.find("[data-test='login-button']");
     // const profileImagin = wrapper.findComponent({ name: "ProfileImage" });
     const profileImagin = wrapper.findComponent("[data-test='profile-image']");
@@ -49,7 +51,7 @@ describe("when user is logged out", () => {
 
 describe("when user logs in", () => {
   it("displays user profile picture", async () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     let profileImagin = wrapper.findComponent("[data-test='profile-image']");
     expect(profileImagin.exists()).toBe(false);
 
