@@ -6,6 +6,7 @@ describe("Subnav", () => {
     it("displays job count", () => {
       const wrapper = mount(Subnav, {
         global: {
+          // fyi shallow mount automatically stubs all children
           stubs: {
             FontAwesomeIcon: true,
           },

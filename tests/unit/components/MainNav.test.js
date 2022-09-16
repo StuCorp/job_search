@@ -1,5 +1,6 @@
 import { mount, shallowMount } from "@vue/test-utils";
 import MainNav from "@/components/MainNav.vue";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 describe("MainNav", () => {
   it("displays company name", async () => {
@@ -60,5 +61,17 @@ describe("when user logs in", () => {
     // the original reference is fixed its nullness, so need to search again
     profileImagin = wrapper.findComponent("[data-test='profile-image']");
     expect(profileImagin.exists()).toBe(true);
+  });
+
+  it("displays subnavigation menu with additional information", async () => {
+    const wrapper = shallowMount(MainNav);
+    let subnav = wrapper.find("[data-test='subnav'");
+    expect(subnav.exists()).toBe(false);
+
+    const loginButton = wrapper.findComponent("[data-test='login-button']");
+    await loginButton.trigger("click");
+
+    subnav = wrapper.find("[data-test='subnav']");
+    expect(subnav.exists()).toBe(true);
   });
 });

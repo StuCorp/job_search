@@ -45,3 +45,17 @@ const goodFoods = {
 };
 
 console.log(goodFoods);
+
+// lets make a timer-based alternating thing
+// setTimeout(() => {
+//   console.log("I will print two seconds after start...BOOP");
+// }, 2000);
+
+// whenever you use setinterval, you should use a clear interval so it doesn't end up running indefinitely somewhere in background
+const interval = setInterval(() => {
+  console.log("I will print two seconds after start, forever...BOOP");
+}, 2000);
+
+setTimeout(() => {
+  clearInterval(interval);
+}, 10000);
